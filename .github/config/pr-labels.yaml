@@ -14,7 +14,7 @@ ci:
 
 deps:
 - changed-files:
-  - any-glob-to-any-file: ['**/package.json', '**/pyproject.toml']
+  - any-glob-to-any-file: ['**/go.mod', '**/go.sum']
 - head-branch: ['^renovate/', '^deps/']
 
 docs:
