@@ -7,6 +7,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+
+	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 type mockapisProvider struct {
@@ -14,6 +16,13 @@ type mockapisProvider struct {
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
+}
+
+// note: this requires import of github.com/hashicorp/terraform-plugin-framework/types
+// https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-provider-configure#implement-provider-data-model
+type mockapisProviderModel struct {
+	Username types.String `tfsdk:"username"`
+	Token    types.String `tfsdk:"token"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -37,8 +46,24 @@ func (p *mockapisProvider) Metadata(_ context.Context, _ provider.MetadataReques
 }
 
 // Schema defines the provider-level schema for configuration data.
+// note:
+// - this is required for your terraform-provider as API client to interact with target APIs
+// - the values of this Schema would be provided in `provider` stanza in .tf files
+// https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-provider-configure#implement-provider-schema
 func (p *mockapisProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
-	resp.Schema = schema.Schema{}
+	resp.Schema = schema.Schema{
+		Attributes: map[string]schema.Attribute{
+			"username": schema.StringAttribute{
+				Required:    true,
+				Description: "Your account name in testapi.io",
+			},
+			"token": schema.StringAttribute{
+				Optional:    true,
+				Sensitive:   true,
+				Description: "testapi.io tokens for private endpoint",
+			},
+		},
+	}
 }
 
 // Configure prepares a HashiCups API client for data sources and resources.
