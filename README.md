@@ -1,4 +1,4 @@
-# {{ terraform-provider-mockapis }}
+# terraform-provider-mockapis
 Note: This file is expected to generate from template. See [.github wiki](https://github.com/hwakabh/.github/wiki) for detailed instructions.
 
 <!-- *** -->
