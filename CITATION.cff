@@ -1,0 +1,10 @@
+# ref: <https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md>
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - name: anonymous
+title: "GH_REPONAME"
+repository-code: "https://github.com/GH_USERNAME/GH_REPONAME"
+type: software
+url: "https://github.com/GH_USERNAME/GH_REPONAME"
+version: "0.1.0"  # x-release-please-version
