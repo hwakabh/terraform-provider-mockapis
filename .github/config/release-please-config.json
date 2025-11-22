@@ -1,7 +1,7 @@
 {
   "packages": {
     ".": {
-      "release-type": "simple",
+      "release-type": "go",
       "changelog-sections": [
         { "type": "build", "section": "Build System" },
         { "type": "ci", "section": "Continuous Integration" },
