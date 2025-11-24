@@ -7,4 +7,4 @@ title: "terraform-provider-mockapis"
 repository-code: "https://github.com/hwakabh/terraform-provider-mockapis"
 type: software
 url: "https://github.com/hwakabh/terraform-provider-mockapis"
-version: "0.1.0"  # x-release-please-version
+version: "0.2.0"  # x-release-please-version
