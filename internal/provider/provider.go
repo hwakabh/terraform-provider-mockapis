@@ -167,5 +167,7 @@ func (p *mockapisProvider) Resources(_ context.Context) []func() resource.Resour
 // note: this is required even if you would not implement data source for your provider
 // https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-provider#implement-initial-provider-type
 func (p *mockapisProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return nil
+	return []func() datasource.DataSource{
+		NewMeDataSource,
+	}
 }
