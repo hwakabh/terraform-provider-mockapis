@@ -6,4 +6,6 @@ terraform {
   }
 }
 
-provider "mockapis" {}
+provider "mockapis" {
+  username = "hwakabh"
+}
