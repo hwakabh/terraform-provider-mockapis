@@ -8,4 +8,11 @@ terraform {
 
 provider "mockapis" {
   username = "hwakabh"
+  token    = "dummy"
+}
+
+data "mockapis_me" "this" {}
+
+output "me_responses" {
+  value = data.mockapis_me.this
 }
