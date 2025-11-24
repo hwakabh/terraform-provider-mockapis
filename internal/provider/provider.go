@@ -11,6 +11,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 
 	"github.com/hwakabh/terraform-provider-mockapis/internal/apiclient"
 )
@@ -76,6 +77,8 @@ func (p *mockapisProvider) Schema(_ context.Context, _ provider.SchemaRequest, r
 // - with this Configure() methods, we can implement logics to fetch configurations from envars
 // https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-provider-configure#implement-client-configuration-functionality
 func (p *mockapisProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	tflog.Info(ctx, "Configuring TestAPI providers")
+
 	var config mockapisProviderModel
 
 	diags := req.Config.Get(ctx, &config)
@@ -140,6 +143,12 @@ func (p *mockapisProvider) Configure(ctx context.Context, req provider.Configure
 		return
 	}
 
+	ctx = tflog.SetField(ctx, "testapi_username", username)
+	ctx = tflog.SetField(ctx, "testapi_token", token)
+
+	ctx = tflog.MaskFieldValuesWithFieldKeys(ctx, "testapi_token")
+	tflog.Debug(ctx, "Creating TestAPI client")
+
 	// instantiate TestAPI client for interact with your APIs
 	client, err := apiclient.NewClient(username, token)
 	if err != nil {
@@ -156,6 +165,8 @@ func (p *mockapisProvider) Configure(ctx context.Context, req provider.Configure
 	// type Configure methods.
 	resp.DataSourceData = client
 	resp.ResourceData = client
+
+	tflog.Info(ctx, "Configured TestAPI client", map[string]any{"success": true})
 }
 
 // Resources defines the resources implemented in the provider.
