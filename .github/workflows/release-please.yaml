@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # https://github.com/googleapis/release-please-action
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         with:
           manifest-file: .release-please-manifest.json
           config-file: '.github/config/release-please-config.json'
