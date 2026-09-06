@@ -27,7 +27,7 @@ jobs:
 
       # https://github.com/github/issue-labeler
       - name: Label Issue
-        uses: github/issue-labeler@v3.4
+        uses: github/issue-labeler@v3.5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: .github/config/issue-labels.yaml
@@ -39,7 +39,7 @@ jobs:
 
       # https://github.com/hwakabh/semantic-issue-action
       - name: Check Issue Title
-        uses: hwakabh/semantic-issue-action@v0.6.1
+        uses: hwakabh/semantic-issue-action@v0.6.9
         with:
           repo: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
