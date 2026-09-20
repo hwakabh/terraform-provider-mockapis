@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   release-please:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       # https://github.com/googleapis/release-please-action
       - uses: googleapis/release-please-action@v4

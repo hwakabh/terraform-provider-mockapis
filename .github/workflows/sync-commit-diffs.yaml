@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   sync-commit-messages:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       # https://github.com/actions/checkout
       - name: Checkout
